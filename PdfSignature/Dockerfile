@@ -9,7 +9,7 @@ COPY /data/. .
 
 # Copy everything else and build
 COPY . ./
-RUN dotnet publish -c Debug -o out
+RUN dotnet publish -c Release -o out
 
 # Build runtime image
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1
