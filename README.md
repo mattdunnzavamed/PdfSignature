@@ -7,4 +7,5 @@ Code copied from https://kb.itextpdf.com/home/it7kb/examples/digital-signatures-
 ### Instructions
 
 - Place PDF files in data folder
+- make run script executable `chmod +x build.sh`
 - run `build.sh` script
