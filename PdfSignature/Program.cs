@@ -22,7 +22,8 @@ namespace PdfSignature
         static void Main(string[] args)
         {
             Program program = new Program();
-            string[] files = Directory.GetFiles(Directory.GetCurrentDirectory() + "/data/");
+            string workingDirectory = Environment.CurrentDirectory;
+            string[] files = Directory.GetFiles(workingDirectory, "*.pdf", SearchOption.AllDirectories);
             foreach (string file in files)
             {
                 program.InspectSignatures(file);
@@ -97,6 +98,8 @@ namespace PdfSignature
 
             Console.Out.WriteLine("Location: " + pkcs7.GetLocation());
             Console.Out.WriteLine("Reason: " + pkcs7.GetReason());
+            Console.Out.WriteLine("Timestamp date: " + pkcs7.GetTimeStampDate());
+            Console.Out.WriteLine("Timestamp token: " + pkcs7.GetTimeStampToken());
             Console.Out.WriteLine("Timestamp verified? " + pkcs7.VerifyTimestampImprint());
 
             /* If you want less common entries than PdfPKCS7 object has, such as the contact info,
@@ -155,7 +158,7 @@ namespace PdfSignature
             string conformance = conformanceLevel == null ? string.Empty : conformanceLevel.GetConformance();
             string part = conformanceLevel == null ? string.Empty : conformanceLevel.GetPart();
             Console.Out.WriteLine($"Document conformance: {conformance}/{part}");
-            GetMetaInfo(pdfDoc); 
+            GetMetaInfo(pdfDoc);
         }
 
         public void ShowCertificateInfo(X509Certificate cert, DateTime signDate)

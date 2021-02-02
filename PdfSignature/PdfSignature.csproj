@@ -9,11 +9,6 @@
     <Folder Include="data\" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="itext7" Version="7.1.13" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Update="data\FirmaSignedSyncFusion.pdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <PackageReference Include="itext7" Version="7.1.14" />
   </ItemGroup>
 </Project>
