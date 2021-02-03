@@ -5,8 +5,6 @@ WORKDIR /app
 COPY *.csproj ./
 RUN dotnet restore
 
-COPY /data/. .
-
 # Copy everything else and build
 COPY . ./
 RUN dotnet publish -c Release -o out
@@ -17,5 +15,8 @@ FROM mcr.microsoft.com/dotnet/core/aspnet:3.1
 WORKDIR /app
 
 COPY --from=build-env /app/out .
+
+# Copy PDF files
 COPY /data/. .
+
 ENTRYPOINT ["dotnet", "PdfSignature.dll"]
